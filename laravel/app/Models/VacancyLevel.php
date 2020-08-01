@@ -10,7 +10,7 @@ class VacancyLevel extends Model
 
   public function __construct(int $remainingCount)
   {
-    $this->remainingCount = $remainingCount; 
+    $this->remainingCount = $remainingCount;
   }
 
   public function mark(): string
@@ -22,5 +22,21 @@ class VacancyLevel extends Model
       return '△';
     }
     return '◎';
+  }
+
+  public function slug(): string
+  {
+    if ($this->remainingCount === 0) {
+      return 'empty';
+    }
+    if ($this->remainingCount === 1) {
+      return 'few';
+    }
+    if ($this->remainingCount === 4) {
+      return 'few';
+    }
+    if ($this->remainingCount === 5) {
+      return 'enough';
+    }
   }
 }
