@@ -35,4 +35,19 @@ class VacancyLevelTest extends TestCase
       ],
     ];
   }
+
+  public function testSlug() 
+  {
+    $level = new VacancyLevel(0);
+    $this->assertSame('empty', $level->slug());
+    
+    $level = new VacancyLevel(1);
+    $this->assertSame('few', $level->slug());
+    
+    $level = new VacancyLevel(4);
+    $this->assertSame('few', $level->slug());
+
+    $level = new VacancyLevel(5);
+    $this->assertSame('enough', $level->slug());
+  }
 }
