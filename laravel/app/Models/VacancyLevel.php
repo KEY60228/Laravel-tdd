@@ -29,14 +29,9 @@ class VacancyLevel extends Model
     if ($this->remainingCount === 0) {
       return 'empty';
     }
-    if ($this->remainingCount === 1) {
+    if ($this->remainingCount < 5) {
       return 'few';
     }
-    if ($this->remainingCount === 4) {
-      return 'few';
-    }
-    if ($this->remainingCount === 5) {
-      return 'enough';
-    }
+    return 'enough';
   }
 }
