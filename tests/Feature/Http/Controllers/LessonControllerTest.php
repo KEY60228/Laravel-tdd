@@ -28,6 +28,10 @@ class LessonControllerTest extends TestCase
       $user = factory(User::class)->create();
       $lesson->reservations()->save(factory(Reservation::class)->make(['user_id' => $user->id]));
     }
+
+    $user = factory(User::class)->create();
+    $this->actingAs($user);
+
     $response = $this->get("/lessons/{$lesson->id}");
 
     $response->assertStatus(Response::HTTP_OK);
