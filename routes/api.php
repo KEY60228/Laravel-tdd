@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:api')->group(function() {
+  Route::post('/lessons/{lesson}/reserve', 'Lesson\ReserveController')->name('lessons.reserve');
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
