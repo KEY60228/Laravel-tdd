@@ -46,6 +46,8 @@ class ReserveControllerTest extends TestCase
 
   public function testInvoke_異常系()
   {
+    Notification::fake();
+
     $lesson = factory(Lesson::class)->create(['capacity' => 1]);
     $anotherUser = $this->createUser();
     $lesson->reservations()->save(factory(Reservation::class)->make(['user_id' => $anotherUser->id]));
@@ -66,5 +68,7 @@ class ReserveControllerTest extends TestCase
       'lesson_id' => $lesson->id,
       'user_id' => $user->id,
     ]);
+
+    Notification::assertNotSentTo($user, ReservationCompleted::class);
   }
 }
